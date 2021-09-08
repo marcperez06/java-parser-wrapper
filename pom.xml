@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.github.marcperez06</groupId>
+	<artifactId>java-parser</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>java-parser</name>
+	<description>Wrapper of library com.github.javaparser:javaparser-core</description>
+	<url>http://maven.apache.org</url>
+
+	<developers>
+		<developer>
+			<id>marcperez06</id>
+			<name>Marc Pérez Rodríguez</name>
+			<url>https://github.com/marcperez06</url>
+			<properties>
+				<github>https://github.com/marcperez06</github>
+				<gitlab>https://gitlab.com/marcperez06</gitlab>
+			</properties>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.github.javaparser</groupId>
+		    <artifactId>javaparser-core</artifactId>
+		    <version>3.12.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/io.github.marcperez06/java-utilities -->
+		<dependency>
+			<groupId>io.github.marcperez06</groupId>
+			<artifactId>java-utilities</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		
+	</dependencies>
+</project>
