@@ -1,4 +1,4 @@
-package io.github.marcperez06.java_parser;
+package io.github.marcperez06.java_parser.test;
 
 import java.util.ArrayList;
 import java.util.List;
