@@ -1,5 +1,6 @@
 package io.github.marcperez06.java_parser.resources.objects.swagger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -98,6 +99,38 @@ public class SwaggerRequestInfo {
 
 	public void setSecurity(List<Map<String, Object>> security) {
 		this.security = security;
+	}
+	
+	public List<SwaggerEndpointObjectInfo> getAllHeadersParameters() {
+		return this.getAllParametersOfType("header");
+	}
+	
+	public List<SwaggerEndpointObjectInfo> getAllPathParameters() {
+		return this.getAllParametersOfType("path");
+	}
+	
+	public List<SwaggerEndpointObjectInfo> getAllQueryParameters() {
+		return this.getAllParametersOfType("query");
+	}
+	
+	public List<SwaggerEndpointObjectInfo> getAllBodyParameters() {
+		return this.getAllParametersOfType("body");
+	}
+	
+	private List<SwaggerEndpointObjectInfo> getAllParametersOfType(String type) {
+		List<SwaggerEndpointObjectInfo> params = new ArrayList<SwaggerEndpointObjectInfo>();
+		
+		if (this.parameters != null && !this.parameters.isEmpty()) {
+
+			for (SwaggerEndpointObjectInfo info : parameters) {
+				if (info.getIn().equals(type)) {
+					params.add(info);
+				}
+			}
+			
+		}
+		
+		return params;
 	}
 
 }

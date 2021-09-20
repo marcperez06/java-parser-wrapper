@@ -3,6 +3,8 @@ package io.github.marcperez06.java_parser.resources.objects.swagger;
 import java.util.List;
 import java.util.Map;
 
+import com.github.javaparser.utils.Utils;
+
 public class SwaggerSchema {
 	
 	private String type;
@@ -62,6 +64,33 @@ public class SwaggerSchema {
 
 	public void setProperties(Map<String, SwaggerSchema> properties) {
 		this.properties = properties;
+	}
+	
+	public String getClassName() {
+		String className = "";
+		
+		if (this.$ref != null && !this.$ref.isEmpty()) {
+			className = this.extractClassName(this.$ref);
+		} else if (this.type.equalsIgnoreCase("array") && this.items != null) {
+			className = this.items.getClassName();
+		} else if (this.type.equalsIgnoreCase("object") && this.properties != null && !this.properties.isEmpty()) {
+			className = "Map<String, Object>";
+		} else {
+			className = this.type;
+		}
+		
+		return Utils.capitalize(className);
+	}
+	
+	private String extractClassName(String ref) {
+		String className = "";
+		String[] refSplited = ref.split("/");
+		
+		if (refSplited != null && refSplited.length > 0) {
+			className = refSplited[refSplited.length - 1];
+		}
+
+		return className;
 	}
 
 }
