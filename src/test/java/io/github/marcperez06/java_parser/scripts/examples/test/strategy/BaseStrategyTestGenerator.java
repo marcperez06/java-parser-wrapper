@@ -3,7 +3,7 @@ package io.github.marcperez06.java_parser.scripts.examples.test.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 
 public class BaseStrategyTestGenerator extends StrategyTestGenerator {
 
@@ -17,7 +17,7 @@ public class BaseStrategyTestGenerator extends StrategyTestGenerator {
 	}
 	
 	@Override
-	public void createVariables(MyJavaParser parser) {
+	public void createVariables(JavaParserWrapper parser) {
 	}
 
 	@Override

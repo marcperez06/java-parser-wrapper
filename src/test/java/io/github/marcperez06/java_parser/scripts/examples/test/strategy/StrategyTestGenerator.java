@@ -2,7 +2,7 @@ package io.github.marcperez06.java_parser.scripts.examples.test.strategy;
 
 import java.util.List;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 
 public abstract class StrategyTestGenerator {
 	
@@ -10,7 +10,7 @@ public abstract class StrategyTestGenerator {
 
 	public abstract List<String> getImports();
 
-	public abstract void createVariables(MyJavaParser parser);
+	public abstract void createVariables(JavaParserWrapper parser);
 
 	public abstract String getTestMethod();
 

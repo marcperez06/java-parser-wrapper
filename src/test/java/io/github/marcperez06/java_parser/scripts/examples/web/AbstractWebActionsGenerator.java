@@ -8,7 +8,7 @@ import java.util.List;
 import com.github.javaparser.ast.Modifier.Keyword;
 import com.github.javaparser.ast.body.Parameter;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_parser.core.factory.ParametersFactory;
 import io.github.marcperez06.java_utilities.strings.StringUtils;
 
@@ -18,7 +18,7 @@ public abstract class AbstractWebActionsGenerator {
 	
 	protected Class<?> baseClass;
 	protected Class<?> destinationClass;
-	protected MyJavaParser parser;
+	protected JavaParserWrapper parser;
 	protected static final String PREFIX = "this.elements.";
 	protected static final String FOUND_ELEMENTS = "foundElements";
 	protected static final String WAIT_ELEMENT = "waitElement";

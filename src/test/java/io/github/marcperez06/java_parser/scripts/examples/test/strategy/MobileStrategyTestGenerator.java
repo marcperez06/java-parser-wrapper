@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.github.javaparser.ast.Modifier.Keyword;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 
 public class MobileStrategyTestGenerator extends StrategyTestGenerator {
 
@@ -19,7 +19,7 @@ public class MobileStrategyTestGenerator extends StrategyTestGenerator {
 	}
 
 	@Override
-	public void createVariables(MyJavaParser parser) {
+	public void createVariables(JavaParserWrapper parser) {
 		if (parser != null) {
 			parser.createVariable("globalDriver", "AppiumDriver<?>", Keyword.PRIVATE);
 		}

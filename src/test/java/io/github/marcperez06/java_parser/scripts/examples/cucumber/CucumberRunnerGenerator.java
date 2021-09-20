@@ -15,7 +15,7 @@ import com.github.javaparser.ast.expr.SimpleName;
 import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
 import com.github.javaparser.ast.expr.StringLiteralExpr;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_parser.resources.ExecutionType;
 
 public class CucumberRunnerGenerator {
@@ -77,7 +77,7 @@ public class CucumberRunnerGenerator {
 	}
 	
 	public void execute() {
-		MyJavaParser parser = new MyJavaParser(this.className, this.packageName);
+		JavaParserWrapper parser = new JavaParserWrapper(this.className, this.packageName);
 		
 		if (!parser.existClass()) {
 			parser.setPackageScope(this.packageScope);
@@ -97,7 +97,7 @@ public class CucumberRunnerGenerator {
 
 	}
 	
-	private void addImports(MyJavaParser parser) {
+	private void addImports(JavaParserWrapper parser) {
 		parser.addImport(this.importCucumberTest);
 		parser.addImport("org.junit.AfterClass");
 		parser.addImport("org.junit.BeforeClass");
@@ -106,12 +106,12 @@ public class CucumberRunnerGenerator {
 		parser.addImport("io.cucumber.junit.CucumberOptions");
 	}
 	
-	private void addCucumberAnnotations(MyJavaParser parser) {
+	private void addCucumberAnnotations(JavaParserWrapper parser) {
 		this.addRunWithAnnotatioN(parser);
 		this.addCucumberOptionsAnnotation(parser);
 	}
 	
-	private void addRunWithAnnotatioN(MyJavaParser parser) {
+	private void addRunWithAnnotatioN(JavaParserWrapper parser) {
 		Name annotationName = new Name("RunWith");
 		ClassExpr expression = new ClassExpr();
 		expression.setType("Cucumber");
@@ -119,7 +119,7 @@ public class CucumberRunnerGenerator {
 		parser.getNewClass().addAnnotation(annotationRunWith);
 	}
 	
-	private void addCucumberOptionsAnnotation(MyJavaParser parser) {
+	private void addCucumberOptionsAnnotation(JavaParserWrapper parser) {
 		String format = "\n\t\t\t\t";
 		// Initialize list of expresions
 		NodeList<Expression> pluginValueList = new NodeList<Expression>();
@@ -163,20 +163,20 @@ public class CucumberRunnerGenerator {
 		parser.getNewClass().addAnnotation(cucumberOptions);
 	}
 	
-	private void createProperties(MyJavaParser parser) {
+	private void createProperties(JavaParserWrapper parser) {
 		ObjectCreationExpr expression = new ObjectCreationExpr();
 		expression.setType(this.cucumberTest);
 		parser.createVariableWithInitializer(this.propertyName, this.cucumberTest, expression, Keyword.PRIVATE, Keyword.STATIC);
 	}
 	
-	private void createSetUpMethod(MyJavaParser parser) {
+	private void createSetUpMethod(JavaParserWrapper parser) {
 		MethodDeclaration method = parser.createMethodDeclaration("setUp", Void.TYPE, Keyword.PUBLIC, Keyword.STATIC);
 		method.addAnnotation("BeforeClass");
 		parser.addBodyToMethod(method, this.propertyName + ".cucumberSetUp();");
 		parser.addMethodIfNotExist(method);
 	}
 	
-	private void createTearDownMethod(MyJavaParser parser) {
+	private void createTearDownMethod(JavaParserWrapper parser) {
 		MethodDeclaration method = parser.createMethodDeclaration("tearDown", Void.TYPE, Keyword.PUBLIC, Keyword.STATIC);
 		method.addAnnotation("AfterClass");
 		parser.addBodyToMethod(method, this.propertyName + ".close();");

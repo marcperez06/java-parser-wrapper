@@ -3,7 +3,7 @@ package io.github.marcperez06.java_parser.scripts.examples.web;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_utilities.reflection.ReflectionUtils;
 
 public class WebActionsGenerator extends AbstractWebActionsGenerator{
@@ -12,12 +12,12 @@ public class WebActionsGenerator extends AbstractWebActionsGenerator{
 	
 	public WebActionsGenerator(Class<?> baseClass) {
 		super(baseClass);
-		super.parser = new MyJavaParser(baseClass.getName(), baseClass.getPackage().getName());
+		super.parser = new JavaParserWrapper(baseClass.getName(), baseClass.getPackage().getName());
 	}
 	
 	public WebActionsGenerator(Class<?> baseClass, Class<?> destinationClass) {
 		super(baseClass, destinationClass);
-		super.parser = new MyJavaParser(destinationClass.getName(), destinationClass.getPackage().getName());
+		super.parser = new JavaParserWrapper(destinationClass.getName(), destinationClass.getPackage().getName());
 	}
 	
 	public void setActionClass(String actionClass) {

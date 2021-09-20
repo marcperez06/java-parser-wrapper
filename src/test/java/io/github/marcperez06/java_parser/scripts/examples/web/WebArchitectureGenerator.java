@@ -8,7 +8,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.stmt.BlockStmt;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_parser.core.factory.ParametersFactory;
 import io.github.marcperez06.java_parser.resources.objects.architecture.ArchitectureGeneratorData;
 
@@ -47,8 +47,8 @@ public class WebArchitectureGenerator {
 		}
 	}
 	
-	private MyJavaParser initJavaParser(String className, List<String> imports) {
-		MyJavaParser parser = new MyJavaParser(className, this.packageName);
+	private JavaParserWrapper initJavaParser(String className, List<String> imports) {
+		JavaParserWrapper parser = new JavaParserWrapper(className, this.packageName);
 		parser.setImports(imports);
 		parser.generateClass();
 		return parser;

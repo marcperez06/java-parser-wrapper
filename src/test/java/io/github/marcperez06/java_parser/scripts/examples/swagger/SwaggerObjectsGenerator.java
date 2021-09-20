@@ -12,7 +12,7 @@ import java.util.Map.Entry;
 import com.github.javaparser.ast.Modifier.Keyword;
 import com.github.javaparser.ast.body.Parameter;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_parser.core.factory.ParametersFactory;
 import io.github.marcperez06.java_parser.resources.objects.swagger.SwaggerObjectDefinition;
 import io.github.marcperez06.java_parser.resources.objects.swagger.SwaggerObjectDefinitionSchema;
@@ -43,7 +43,7 @@ public class SwaggerObjectsGenerator extends SwaggerAbstractGenerator {
 		if (this.canCreateClass(className, objectDefinition)) {
 			String packageForClass = super.getPackageNameForClass(className);
 			
-			MyJavaParser parser = new MyJavaParser(className, packageForClass);
+			JavaParserWrapper parser = new JavaParserWrapper(className, packageForClass);
 			parser.setPackageScope(super.packageScope);
 			parser.parseOrCreateClass();
 			this.createObjectDefinition(objectDefinition, parser);
@@ -67,7 +67,7 @@ public class SwaggerObjectsGenerator extends SwaggerAbstractGenerator {
 		return canCreateClass;
 	}
 
-	private void createObjectDefinition(SwaggerObjectDefinition objectDefinition, MyJavaParser parser) {
+	private void createObjectDefinition(SwaggerObjectDefinition objectDefinition, JavaParserWrapper parser) {
 	
 		Map<String, SwaggerObjectDefinitionSchema> properties = objectDefinition.getProperties();
 		
@@ -91,7 +91,7 @@ public class SwaggerObjectsGenerator extends SwaggerAbstractGenerator {
 	}
 	
 	private void createObjectDefinitionVariables(Entry<String, SwaggerObjectDefinitionSchema> property,
-													MyJavaParser parser) {
+													JavaParserWrapper parser) {
 		
 		String propertyName = super.formatToCamelCase(property.getKey());
 		SwaggerObjectDefinitionSchema schema = property.getValue();
@@ -106,7 +106,7 @@ public class SwaggerObjectsGenerator extends SwaggerAbstractGenerator {
 	}
 	
 	private void createObjectDefinitionMethods(Entry<String, SwaggerObjectDefinitionSchema> property,
-													MyJavaParser parser) {
+													JavaParserWrapper parser) {
 		
 		String propertyName = super.formatToCamelCase(property.getKey());
 		SwaggerObjectDefinitionSchema schema = property.getValue();
@@ -196,13 +196,13 @@ public class SwaggerObjectsGenerator extends SwaggerAbstractGenerator {
 		return resultMap;
 	}
 	
-	private void createGetMethod(MyJavaParser parser, String suffixMethodName, String propertyName, String variableType) {
+	private void createGetMethod(JavaParserWrapper parser, String suffixMethodName, String propertyName, String variableType) {
 		String methodName = "get" + suffixMethodName;
 		String methodBody = "return this." + propertyName + ";";
 		parser.createMethodIfNotExist(methodName, methodBody, null, variableType, Keyword.PUBLIC);
 	}
 	
-	private void createSetMethod(MyJavaParser parser, String suffixMethodName, String propertyName, String variableType) {
+	private void createSetMethod(JavaParserWrapper parser, String suffixMethodName, String propertyName, String variableType) {
 		String methodName = "set" + suffixMethodName;
 		String methodBody = "this." + propertyName + " = " + propertyName + ";";
 		List<Parameter> parameters = ParametersFactory.createListWithOneParameter(propertyName, variableType);

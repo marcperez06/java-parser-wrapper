@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.github.javaparser.ast.Modifier.Keyword;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 
 public class MobileStrategyCucumberTestGenerator extends StrategyCucumberTestGenerator {
 	
@@ -22,7 +22,7 @@ public class MobileStrategyCucumberTestGenerator extends StrategyCucumberTestGen
 	}
 	
 	@Override
-	public void createVariables(MyJavaParser parser) {
+	public void createVariables(JavaParserWrapper parser) {
 		if (parser != null) {
 			parser.addImport("io.appium.java_client.AppiumDriver");
 			parser.createVariable("driver", "AppiumDriver<?>", Keyword.PRIVATE);

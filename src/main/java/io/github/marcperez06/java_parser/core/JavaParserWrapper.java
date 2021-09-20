@@ -14,7 +14,7 @@ import com.github.javaparser.ast.stmt.BlockStmt;
 
 import io.github.marcperez06.java_utilities.file.FileUtils;
 
-public class MyJavaParser {
+public class JavaParserWrapper {
 	
 	public static final String MAIN = "main";
 	public static final String TEST = "test";
@@ -25,7 +25,7 @@ public class MyJavaParser {
 	private MethodsParser methods;
 	private ConstructorsParser constructors;
 	
-	public MyJavaParser(String className, String packageName) {
+	public JavaParserWrapper(String className, String packageName) {
 		this.classParser = new ClassParser(className, packageName);
 	}
 

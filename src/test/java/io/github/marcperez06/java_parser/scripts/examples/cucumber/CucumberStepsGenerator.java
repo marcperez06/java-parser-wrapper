@@ -3,7 +3,7 @@ package io.github.marcperez06.java_parser.scripts.examples.cucumber;
 import com.github.javaparser.ast.Modifier.Keyword;
 import com.github.javaparser.ast.body.MethodDeclaration;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_parser.resources.ExecutionType;
 
 public class CucumberStepsGenerator {
@@ -54,7 +54,7 @@ public class CucumberStepsGenerator {
 	}
 	
 	public void execute() {
-		MyJavaParser parser = new MyJavaParser(this.className, this.packageName);
+		JavaParserWrapper parser = new JavaParserWrapper(this.className, this.packageName);
 		
 		if (!parser.existClass()) {
 			parser.setPackageScope(this.packageScope);
@@ -73,14 +73,14 @@ public class CucumberStepsGenerator {
 
 	}
 	
-	private void addImports(MyJavaParser parser) {
+	private void addImports(JavaParserWrapper parser) {
 		parser.addImport(this.importParentClass);
 		parser.addImport("io.cucumber.java.Before");
 		parser.addImport("io.cucumber.java.After");
 		parser.addImport("io.cucumber.core.api.Scenario");
 	}
 	
-	private void createSetUpMethod(MyJavaParser parser) {
+	private void createSetUpMethod(JavaParserWrapper parser) {
 		MethodDeclaration method = parser.createMethodDeclaration("setUp", Void.TYPE, Keyword.PUBLIC);
 		method.addAnnotation("Before");
 		method.addAnnotation("Override");
@@ -89,7 +89,7 @@ public class CucumberStepsGenerator {
 		parser.addMethodIfNotExist(method);
 	}
 	
-	private void createTearDownMethod(MyJavaParser parser) {
+	private void createTearDownMethod(JavaParserWrapper parser) {
 		MethodDeclaration method = parser.createMethodDeclaration("tearDown", Void.TYPE, Keyword.PUBLIC);
 		method.addAnnotation("After");
 		method.addAnnotation("Override");

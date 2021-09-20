@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.github.javaparser.ast.Modifier.Keyword;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_utilities.reflection.ReflectionUtils;
 import io.github.marcperez06.java_utilities.strings.StringUtils;
 
@@ -16,12 +16,12 @@ public class MobileComponentActionsGenerator extends AbstractMobileActionsGenera
 	
 	public MobileComponentActionsGenerator(Class<?> baseClass) {
 		super(baseClass);
-		super.parser = new MyJavaParser(baseClass.getSimpleName(), baseClass.getPackage().getName());
+		super.parser = new JavaParserWrapper(baseClass.getSimpleName(), baseClass.getPackage().getName());
 	}
 	
 	public MobileComponentActionsGenerator(Class<?> baseClass, Class<?> destinationClass) {
 		super(baseClass);
-		super.parser = new MyJavaParser(destinationClass.getSimpleName(), destinationClass.getPackage().getName());
+		super.parser = new JavaParserWrapper(destinationClass.getSimpleName(), destinationClass.getPackage().getName());
 	}
 	
 	@Override
@@ -137,7 +137,7 @@ public class MobileComponentActionsGenerator extends AbstractMobileActionsGenera
 		return variableType;
 	}
 	
-	private void createGetMethod(MyJavaParser parser, String propertyName, String variableType) {
+	private void createGetMethod(JavaParserWrapper parser, String propertyName, String variableType) {
 		String methodName = "get" + StringUtils.capitalizeWord(propertyName);
 		String methodBody = INIT_ELEMENTS + "return this." + propertyName + ";";
 		parser.createMethodIfNotExist(methodName, methodBody, null, variableType, Keyword.PUBLIC);

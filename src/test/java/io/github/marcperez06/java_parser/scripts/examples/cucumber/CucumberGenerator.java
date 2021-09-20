@@ -7,7 +7,7 @@ import com.github.javaparser.ast.Modifier.Keyword;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_parser.core.factory.ParametersFactory;
 import io.github.marcperez06.java_parser.resources.ExecutionType;
 import io.github.marcperez06.java_parser.scripts.examples.cucumber.strategy.ApiStrategyCucumberTestGenerator;
@@ -93,7 +93,7 @@ public class CucumberGenerator {
 	private void createCucumberSteps(GherkinObject gherkin) {
 		String featurePackage = this.transformToPackageName(gherkin.getFeature().getLine());
 		String packageName = this.packageName + ".tests." + featurePackage;
-		MyJavaParser parser = new MyJavaParser(gherkin.getScenarioName(), packageName);
+		JavaParserWrapper parser = new JavaParserWrapper(gherkin.getScenarioName(), packageName);
 		parser.setPackageScope(this.packageScope);
 		parser.parseOrCreateClass();
 		
@@ -127,7 +127,7 @@ public class CucumberGenerator {
 		return packageName;
 	}
 	
-	private void createCucumberGivenSteps(MyJavaParser parser, GherkinObject gherkin) {
+	private void createCucumberGivenSteps(JavaParserWrapper parser, GherkinObject gherkin) {
 		List<GherkinCriteria> givens = gherkin.getGivens();
 		
 		if (givens != null && !givens.isEmpty()) {
@@ -137,7 +137,7 @@ public class CucumberGenerator {
 
 	}
 	
-	private void createCucumberWhenSteps(MyJavaParser parser, GherkinObject gherkin) {
+	private void createCucumberWhenSteps(JavaParserWrapper parser, GherkinObject gherkin) {
 		List<GherkinCriteria> whens = gherkin.getWhens();
 		
 		if (whens != null && !whens.isEmpty()) {
@@ -147,7 +147,7 @@ public class CucumberGenerator {
 
 	}
 	
-	private void createCucumberThenSteps(MyJavaParser parser, GherkinObject gherkin) {
+	private void createCucumberThenSteps(JavaParserWrapper parser, GherkinObject gherkin) {
 		List<GherkinCriteria> thens = gherkin.getThens();
 		
 		if (thens != null && !thens.isEmpty()) {
@@ -160,7 +160,7 @@ public class CucumberGenerator {
 		String packageName = this.packageName + ".tests.background";
 		String backgroundClassName = BACKGROUND + "Steps";
 		
-		MyJavaParser parser = new MyJavaParser(backgroundClassName, packageName);
+		JavaParserWrapper parser = new JavaParserWrapper(backgroundClassName, packageName);
 		parser.setPackageScope(this.packageScope);
 		parser.parseOrCreateClass();
 		
@@ -174,7 +174,7 @@ public class CucumberGenerator {
 		parser.deleteAndSaveClass(savePath);
 	}
 	
-	private void createBackgroundSteps(MyJavaParser parser, GherkinObject gherkin) {
+	private void createBackgroundSteps(JavaParserWrapper parser, GherkinObject gherkin) {
 		if (!gherkin.getBackground().isEmpty()) {
 			
 			List<GherkinCriteria> givens = gherkin.getBackground().get(GherkinCriteria.GIVEN);
@@ -196,7 +196,7 @@ public class CucumberGenerator {
 		}
 	}
 	
-	private void createCucumberSteps(MyJavaParser parser, GherkinObject gherkin, List<GherkinCriteria> criteriaLines) {
+	private void createCucumberSteps(JavaParserWrapper parser, GherkinObject gherkin, List<GherkinCriteria> criteriaLines) {
 
 		for (GherkinCriteria criteria : criteriaLines) {
 			String criteriaType = criteria.getType();

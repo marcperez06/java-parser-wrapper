@@ -6,7 +6,7 @@ import com.github.javaparser.ast.Modifier.Keyword;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.utils.Utils;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_parser.resources.ExecutionType;
 import io.github.marcperez06.java_parser.scripts.examples.test.strategy.ApiStrategyTestGenerator;
 import io.github.marcperez06.java_parser.scripts.examples.test.strategy.BaseStrategyTestGenerator;
@@ -59,7 +59,7 @@ public class TestGenerator {
 
 	public void execute() {
 		if (this.testName != null && !this.testName.isEmpty()) {
-			MyJavaParser parser = new MyJavaParser(this.testName, this.packageName);
+			JavaParserWrapper parser = new JavaParserWrapper(this.testName, this.packageName);
 			parser.setPackageScope(this.packageScope);
 			parser.parseOrCreateClass();
 			this.chooseTestStrategy();
@@ -91,7 +91,7 @@ public class TestGenerator {
 		return (this.strategy != null);
 	}
 	
-	private void addImports(MyJavaParser parser) {
+	private void addImports(JavaParserWrapper parser) {
 		parser.addImport("sogeti.testing_framework_base.core.shared.annotations.TestInfo");
 		parser.addImport("sogeti.testing_framework_base.core.shared.report.ReportTestManager");
 		if (this.isStrategyDefined()) {
@@ -100,7 +100,7 @@ public class TestGenerator {
 		}
 	}
 	
-	private void extendTestClass(MyJavaParser parser) {
+	private void extendTestClass(JavaParserWrapper parser) {
 		if (this.executionType == ExecutionType.NULL) {
 			parser.extendClass("BaseTest");
 		} else if (this.executionType == ExecutionType.API) {
@@ -112,17 +112,17 @@ public class TestGenerator {
 		}
 	}
 	
-	private void createTestInfoAnnotation(MyJavaParser parser) {
+	private void createTestInfoAnnotation(JavaParserWrapper parser) {
 		parser.createAnnotationClass("TestInfo");
 	}
 	
-	private void createVariables(MyJavaParser parser) {
+	private void createVariables(JavaParserWrapper parser) {
 		if (this.isStrategyDefined()) {
 			this.strategy.createVariables(parser);
 		}
 	}
 	
-	private void createBeforeMethod(MyJavaParser parser) {
+	private void createBeforeMethod(JavaParserWrapper parser) {
 		if (this.isStrategyDefined()) {
 			parser.addImport("org.junit.Before");
 			String methodName = "beforeTest";
@@ -134,7 +134,7 @@ public class TestGenerator {
 		}
 	}
 	
-	private void createTestMethod(MyJavaParser parser) {
+	private void createTestMethod(JavaParserWrapper parser) {
 		if (this.isStrategyDefined()) {
 			parser.addImport("org.junit.Test");
 			String methodName = Utils.decapitalize(this.testName);
@@ -146,7 +146,7 @@ public class TestGenerator {
 		}
 	}
 	
-	private void createAfterMethod(MyJavaParser parser) {
+	private void createAfterMethod(JavaParserWrapper parser) {
 		if (this.isStrategyDefined()) {
 			String methodName = "tearDown";
 			String methodBody = this.strategy.getAfterMethod();

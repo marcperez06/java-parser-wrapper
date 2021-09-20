@@ -3,7 +3,7 @@ package io.github.marcperez06.java_parser.scripts.examples.mobile;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_utilities.reflection.ReflectionUtils;
 
 public class MobileActionsGenerator extends AbstractMobileActionsGenerator {
@@ -12,12 +12,12 @@ public class MobileActionsGenerator extends AbstractMobileActionsGenerator {
 	
 	public MobileActionsGenerator(Class<?> baseClass) {
 		super(baseClass);
-		super.parser = new MyJavaParser(baseClass.getName(), baseClass.getPackage().getName());
+		super.parser = new JavaParserWrapper(baseClass.getName(), baseClass.getPackage().getName());
 	}
 	
 	public MobileActionsGenerator(Class<?> baseClass, Class<?> destinationClass) {
 		super(baseClass, destinationClass);
-		super.parser = new MyJavaParser(destinationClass.getName(), destinationClass.getPackage().getName());
+		super.parser = new JavaParserWrapper(destinationClass.getName(), destinationClass.getPackage().getName());
 	}
 	
 	@Override

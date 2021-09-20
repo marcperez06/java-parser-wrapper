@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 
 import com.github.javaparser.ast.Modifier.Keyword;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_parser.resources.objects.swagger.SwaggerEndpoint;
 import io.github.marcperez06.java_parser.resources.objects.swagger.SwaggerObjectDefinition;
 import io.github.marcperez06.java_parser.resources.objects.swagger.SwaggerRequestInfo;
@@ -57,7 +57,7 @@ public class SwaggerInformationGenerator extends SwaggerAbstractGenerator {
 			String tagWithoutErrors = super.formatToCamelCase(tag);
 			String className = StringUtils.capitalizeWord(tagWithoutErrors) + "Endpoints";
 			
-			MyJavaParser parser = new MyJavaParser(className, this.endpointsPackage);
+			JavaParserWrapper parser = new JavaParserWrapper(className, this.endpointsPackage);
 			parser.setPackageScope(super.packageScope);
 			parser.parseOrCreateClass();
 			
@@ -70,7 +70,7 @@ public class SwaggerInformationGenerator extends SwaggerAbstractGenerator {
 		
 	}
 	
-	private void createEndpoint(MyJavaParser parser, String endpoint, SwaggerEndpoint swaggerEndpoint) {
+	private void createEndpoint(JavaParserWrapper parser, String endpoint, SwaggerEndpoint swaggerEndpoint) {
 		if (swaggerEndpoint.haveAnyRequestInfo()) {
 			SwaggerRequestInfo requestInfo = swaggerEndpoint.getRequestInfo();
 			for (int i = 0; i < requestInfo.getTags().size(); i++) {

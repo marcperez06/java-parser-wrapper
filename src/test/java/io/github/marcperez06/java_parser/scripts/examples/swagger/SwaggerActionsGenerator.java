@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 import com.github.javaparser.ast.Modifier.Keyword;
 import com.github.javaparser.ast.body.Parameter;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 import io.github.marcperez06.java_parser.core.factory.ParametersFactory;
 import io.github.marcperez06.java_parser.resources.objects.swagger.SwaggerEndpoint;
 import io.github.marcperez06.java_parser.resources.objects.swagger.SwaggerEndpointObjectInfo;
@@ -54,7 +54,7 @@ public class SwaggerActionsGenerator extends SwaggerAbstractGenerator {
 		String className = StringUtils.capitalizeWord(tagWithoutErrors) + "Actions";
 		String endpointClass = StringUtils.capitalizeWord(tagWithoutErrors) + "Endpoints";
 		
-		MyJavaParser parser = new MyJavaParser(className, super.packageName);
+		JavaParserWrapper parser = new JavaParserWrapper(className, super.packageName);
 		parser.setPackageScope(super.packageScope);
 		parser.parseOrCreateClass();
 		this.extendActionClass(parser);
@@ -78,7 +78,7 @@ public class SwaggerActionsGenerator extends SwaggerAbstractGenerator {
 		parser.deleteAndSaveClass();
 	}
 	
-	private void extendActionClass(MyJavaParser parser) {
+	private void extendActionClass(JavaParserWrapper parser) {
 		//EnvironmentProperties properties = PropertiesManager.getEnvironmentProperties(EnvironmentType.API);
 		//String parentClassName = properties.getProperty(ApiEnvProperties.ACTIONS_PARENT_CLASS);
 		String parentClassName = "";
@@ -96,7 +96,7 @@ public class SwaggerActionsGenerator extends SwaggerAbstractGenerator {
 		}
 	}
 	
-	private void createConstructorsForAction(MyJavaParser parser) {
+	private void createConstructorsForAction(JavaParserWrapper parser) {
 		List<Parameter> constructorParameters = ParametersFactory.createListWithOneParameter("baseUri", "String");
 		parser.createDefaultConstructor(Keyword.PUBLIC);
 		parser.createConstructor(constructorParameters, Keyword.PUBLIC);
@@ -115,7 +115,7 @@ public class SwaggerActionsGenerator extends SwaggerAbstractGenerator {
 		return imports;
 	}
 
-	private void createMethodsForAction(MyJavaParser parser, String endpoint, SwaggerEndpoint swaggerEndpoint) {
+	private void createMethodsForAction(JavaParserWrapper parser, String endpoint, SwaggerEndpoint swaggerEndpoint) {
 		
 		Map<String, SwaggerRequestInfo> endpointActions = swaggerEndpoint.getAllRequestInfo();
 		
@@ -125,7 +125,7 @@ public class SwaggerActionsGenerator extends SwaggerAbstractGenerator {
 
 	}
 	
-	private void createMethodForAction(MyJavaParser parser, String endpoint, Entry<String, SwaggerRequestInfo> requestEntry) {
+	private void createMethodForAction(JavaParserWrapper parser, String endpoint, Entry<String, SwaggerRequestInfo> requestEntry) {
 		if (requestEntry != null && requestEntry.getValue() != null) {
 			SwaggerRequestInfo requestInfo = requestEntry.getValue();
 			String methodName = this.getMethodName(requestEntry.getKey(), requestInfo);
@@ -224,7 +224,7 @@ public class SwaggerActionsGenerator extends SwaggerAbstractGenerator {
 		return packageForClass;
 	}
 	
-	private String createBodyMethodOfAction(MyJavaParser parser, String endpoint, Entry<String, SwaggerRequestInfo> requestEntry) {
+	private String createBodyMethodOfAction(JavaParserWrapper parser, String endpoint, Entry<String, SwaggerRequestInfo> requestEntry) {
 		String bodyMethod = "";
 		String initializeReturnCode = "Response response = null;";
 		String ifCode = "if (super.restApiIsDefined()) {";

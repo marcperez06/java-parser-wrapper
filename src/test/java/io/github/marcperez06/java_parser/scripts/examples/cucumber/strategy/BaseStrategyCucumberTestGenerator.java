@@ -3,7 +3,7 @@ package io.github.marcperez06.java_parser.scripts.examples.cucumber.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.marcperez06.java_parser.core.MyJavaParser;
+import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 
 public class BaseStrategyCucumberTestGenerator extends StrategyCucumberTestGenerator {
 	
@@ -20,7 +20,7 @@ public class BaseStrategyCucumberTestGenerator extends StrategyCucumberTestGener
 	}
 	
 	@Override
-	public void createVariables(MyJavaParser parser) {
+	public void createVariables(JavaParserWrapper parser) {
 	}
 	
 	@Override
