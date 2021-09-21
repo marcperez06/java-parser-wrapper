@@ -126,7 +126,7 @@ public class BuilderPatternGenerator {
 
 	/**
 	 * Generate the Builder class in a builder package created where the base class is placed
-	 * @param baseClass - Class<?> base class used to generate the Builder class
+	 * @param baseClass - Class%lt;?&gt; base class used to generate the Builder class
 	 * @param packageScope - String (Optional), allows to create the architecture in "main" package or "test" package
 	 */
 	public static void generateBuilder(Class<?> baseClass, String...packageScope) {
@@ -136,7 +136,7 @@ public class BuilderPatternGenerator {
 
 	/**
 	 * Generate the Builder class
-	 * @param baseClass - Class<?> base class used to generate the Builder class
+	 * @param baseClass - Class%lt;?&gt; base class used to generate the Builder class
 	 * @param packageName - String
 	 * @param packageScope - String (Optional), allows to create the architecture in "main" package or "test" package
 	 */
