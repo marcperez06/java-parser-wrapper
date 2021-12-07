@@ -14,7 +14,7 @@ import io.github.marcperez06.java_parser.resources.objects.architecture.Architec
 
 public class WebArchitectureGenerator {
 	
-	private final String importBasePackage = "example.package.";
+	private final String importBasePackage = "example.";
 	
 	private String className;
 	private String packageName;

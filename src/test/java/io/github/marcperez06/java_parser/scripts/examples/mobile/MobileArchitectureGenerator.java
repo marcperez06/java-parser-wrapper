@@ -14,7 +14,7 @@ import io.github.marcperez06.java_parser.core.factory.ParametersFactory;
 
 public class MobileArchitectureGenerator {
 	
-	private final String importBasePackage = "example.package.";
+	private final String importBasePackage = "example.";
 
 	private String className;
 	private String packageName;

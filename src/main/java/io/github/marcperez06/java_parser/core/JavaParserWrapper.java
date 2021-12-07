@@ -27,6 +27,8 @@ public class JavaParserWrapper {
 	
 	public JavaParserWrapper(String className, String packageName) {
 		this.classParser = new ClassParser(className, packageName);
+		this.generateClass();
+		this.initParsers();
 	}
 
 	// -------------------- GETTERS AND SETTERS ---------------------
@@ -75,9 +77,6 @@ public class JavaParserWrapper {
 	
 	public CompilationUnit generateClass() {
 		this.classParser.generateClass();
-		this.initParsers();
-		this.imports.addImports();
-
 		return this.classParser.getCompilationUnit();
 	}
 	
@@ -88,6 +87,8 @@ public class JavaParserWrapper {
 			this.properties = new VariablesParser(this.classParser.getNewClass());
 			this.methods = new MethodsParser(this.classParser.getNewClass());
 			this.constructors = new ConstructorsParser(this.classParser.getNewClass(), this.classParser.getClassName());
+			
+			this.imports.addImports();
 		}
 	}
 	

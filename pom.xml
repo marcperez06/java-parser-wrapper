@@ -4,7 +4,7 @@
 
 	<groupId>io.github.marcperez06</groupId>
 	<artifactId>java-parser-wrapper</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>java-parser</name>
@@ -59,7 +59,7 @@
 		<dependency>
 			<groupId>io.github.marcperez06</groupId>
 			<artifactId>java-utilities</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.4</version>
 		</dependency>
 		
 	</dependencies>

@@ -13,7 +13,7 @@ public class WebStrategyTestGenerator extends StrategyTestGenerator {
 	public List<String> getImports() {
 		List<String> imports = new ArrayList<String>();
 		imports.add(super.importBasePackage + "core.shared.test.WebTest");
-		imports.add(super.importBasePackage + "core.application.drivers.web.WebDriverFactory");
+		imports.add(super.importBasePackage + "core.application.web.drivers.WebDriverFactory");
 		imports.add("org.openqa.selenium.WebDriver");
 		return imports;
 	}

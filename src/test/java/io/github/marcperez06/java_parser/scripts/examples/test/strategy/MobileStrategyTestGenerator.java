@@ -13,7 +13,7 @@ public class MobileStrategyTestGenerator extends StrategyTestGenerator {
 	public List<String> getImports() {
 		List<String> imports = new ArrayList<String>();
 		imports.add(super.importBasePackage + "core.shared.test.MobileTest");
-		imports.add(super.importBasePackage + "core.application.drivers.mobile.MobileDriverFactory");
+		imports.add(super.importBasePackage + "core.application.mobile.drivers.MobileDriverFactory");
 		imports.add("io.appium.java_client.AppiumDriver");
 		return imports;
 	}

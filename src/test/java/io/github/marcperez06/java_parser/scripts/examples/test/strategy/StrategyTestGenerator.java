@@ -6,7 +6,7 @@ import io.github.marcperez06.java_parser.core.JavaParserWrapper;
 
 public abstract class StrategyTestGenerator {
 	
-	protected final String importBasePackage = "example.package.";
+	protected final String importBasePackage = "example.";
 
 	public abstract List<String> getImports();
 
