@@ -91,9 +91,8 @@ class ClassParser {
 					this.classToParse = optClass.get();
 				}
 				
-			} catch (Exception e) {
-				this.compilationUnit = null;
-				this.classToParse = null;
+			} catch (Throwable e) {
+				e.printStackTrace();
 			}
 		}
 		return this.compilationUnit;
@@ -123,23 +122,26 @@ class ClassParser {
 
 	public CompilationUnit generateClass() {
 		this.createCompilationUnit();
-		
-		if (this.compilationUnit != null) {
-			this.createClass();
-		}
-
+		this.createClass();
 		return this.compilationUnit;
 	}
 	
 	private void createCompilationUnit() {
-		this.compilationUnit = new CompilationUnit();
-		this.compilationUnit.setPackageDeclaration(this.packageName);
+		if (compilationUnit == null) {
+			this.compilationUnit = new CompilationUnit();
+			this.compilationUnit.setPackageDeclaration(this.packageName);	
+		}
 	}
 
 	private void createClass() {
-		if (this.compilationUnit != null) {
+		if (this.compilationUnit != null && this.classToParse == null) {
 			this.classToParse = this.compilationUnit.addClass(this.className);
 		}
+	}
+	
+	public void clearClass() {
+		this.compilationUnit = null;
+		this.classToParse = null;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

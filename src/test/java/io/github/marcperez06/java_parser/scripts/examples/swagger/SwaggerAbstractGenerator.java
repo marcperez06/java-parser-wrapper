@@ -14,6 +14,7 @@ import io.github.marcperez06.java_parser.resources.objects.swagger.SwaggerEndpoi
 import io.github.marcperez06.java_parser.resources.objects.swagger.SwaggerRequestInfo;
 import io.github.marcperez06.java_utilities.api.request.Request;
 import io.github.marcperez06.java_utilities.api.request.Response;
+import io.github.marcperez06.java_utilities.api.request.ResponseTypeHolder;
 import io.github.marcperez06.java_utilities.api.request.enums.HttpMethodEnum;
 import io.github.marcperez06.java_utilities.api.rest.UnirestClient;
 import io.github.marcperez06.java_utilities.file.FileUtils;
@@ -71,6 +72,7 @@ public abstract class SwaggerAbstractGenerator {
 			UnirestClient api = new UnirestClient();
 			Request request = new Request(HttpMethodEnum.GET);
 			request.setURL(this.swaggerDocumentUri);
+			request.setResponseType(new ResponseTypeHolder<SwaggerDocumentation>() {});
 			Response<SwaggerDocumentation> response = api.send(request);
 			if (response.isSuccess()) {
 				Optional<SwaggerDocumentation> documentation = response.getResponseObject();

@@ -45,7 +45,12 @@ class ImportsParser {
 	
 	public void addImport(String importName) {
 		if (this.compilationUnit != null && this.notExistImport(importName)) {
-			this.compilationUnit.addImport(importName);
+			try {
+				this.compilationUnit.addImport(importName);	
+			} catch (Throwable e) {
+				System.out.println("Can not import this: " + importName);
+			}
+			
 		}
 	}
 	

@@ -80,13 +80,19 @@ public class JavaParserWrapper {
 		return this.classParser.getCompilationUnit();
 	}
 	
+	public void clearClass() {
+		this.classParser.clearClass();
+	}
+	
 	private void initParsers() {
-		boolean canInitParsers = (this.classParser.getCompilationUnit() != null && this.classParser.getNewClass() != null);
+		CompilationUnit compilationUnit = this.classParser.getCompilationUnit();
+		ClassOrInterfaceDeclaration newClass = this.classParser.getNewClass();
+		boolean canInitParsers = (compilationUnit != null && newClass != null);
 		if (canInitParsers) {
-			this.imports = new ImportsParser(this.classParser.getCompilationUnit());
-			this.properties = new VariablesParser(this.classParser.getNewClass());
-			this.methods = new MethodsParser(this.classParser.getNewClass());
-			this.constructors = new ConstructorsParser(this.classParser.getNewClass(), this.classParser.getClassName());
+			this.imports = new ImportsParser(compilationUnit);
+			this.properties = new VariablesParser(newClass);
+			this.methods = new MethodsParser(newClass);
+			this.constructors = new ConstructorsParser(newClass, this.classParser.getClassName());
 			
 			this.imports.addImports();
 		}

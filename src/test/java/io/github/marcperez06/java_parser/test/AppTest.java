@@ -1,5 +1,6 @@
 package io.github.marcperez06.java_parser.test;
 
+import io.github.marcperez06.java_parser.scripts.examples.swagger.SwaggerInformationGenerator;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -33,6 +34,7 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+    	SwaggerInformationGenerator.generateInformation("https://petstore.swagger.io/v2/swagger.json", new JavaParserTest().getClass().getPackage().getName() + "auto_generation", "test");
+    	assertTrue( true );
     }
 }

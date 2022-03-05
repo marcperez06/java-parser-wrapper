@@ -4,7 +4,7 @@
 
 	<groupId>io.github.marcperez06</groupId>
 	<artifactId>java-parser-wrapper</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<packaging>jar</packaging>
 
 	<name>java-parser</name>
@@ -35,31 +35,34 @@
 		<developerConnection>scm:git:ssh://github.com:marcperez06/java-parser-wrapper.git</developerConnection>
 		<url>https://github.com/marcperez06/java-parser-wrapper.git</url>
 	</scm>
-
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
+		<junit.version>4.13.1</junit.version>
+		<parser.version>3.12.0</parser.version>
+		<utilities.version>0.0.5</utilities.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		
 		<dependency>
 		    <groupId>com.github.javaparser</groupId>
 		    <artifactId>javaparser-core</artifactId>
-		    <version>3.12.0</version>
+		    <version>${parser.version}</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/io.github.marcperez06/java-utilities -->
 		<dependency>
 			<groupId>io.github.marcperez06</groupId>
 			<artifactId>java-utilities</artifactId>
-			<version>0.0.4</version>
+			<version>${utilities.version}</version>
 		</dependency>
 		
 	</dependencies>

@@ -109,8 +109,8 @@ public class SwaggerActionsGenerator extends SwaggerAbstractGenerator {
 		List<String> imports = new ArrayList<String>();
 		imports.add("io.restassured.response.Response");
 		imports.add("io.restassured.http.Method");
-		imports.add(importBasePackage + "utils.Logger");
-		imports.add(importBasePackage + "core.api.endpoints.Endpoint");
+		imports.add("io.github.marcperez06.java_utilities.logger.Logger");
+		imports.add("io.github.marcperez06.java_utilities.uri.endpoint.Endpoint");
 		imports.add(importBasePackage + "core.api.rest.RestApiConfig");
 		return imports;
 	}

@@ -1,5 +1,7 @@
 package io.github.marcperez06.java_parser.test;
 
+import io.github.marcperez06.java_parser.scripts.examples.swagger.SwaggerInformationGenerator;
+
 public class JavaParserTest {
 	
 	public static void main(String[] args) {
@@ -38,6 +40,8 @@ public class JavaParserTest {
 		//TestGenerator.generateTest(testName, packageName, ExecutionType.WEB);
 		
 		//TestGenerator.generateTestsFromFile(Paths.ARCHITECTURE_DATA + "test_autogeneration.xls");
+		
+		//SwaggerInformationGenerator.generateInformation("https://petstore.swagger.io/v2/swagger.json", new JavaParserTest().getClass().getPackage().getName() + ".auto_generation", "test");
 	}
 
 }
