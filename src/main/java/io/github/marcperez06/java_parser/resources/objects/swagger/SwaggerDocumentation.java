@@ -1,5 +1,7 @@
 package io.github.marcperez06.java_parser.resources.objects.swagger;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +45,7 @@ public class SwaggerDocumentation {
 	}
 
 	public List<String> getSchemes() {
-		return this.schemes;
+		return (this.schemes != null) ? this.schemes : new ArrayList<String>();
 	}
 
 	public void setSchemes(List<String> schemes) {
@@ -51,7 +53,7 @@ public class SwaggerDocumentation {
 	}
 
 	public List<String> getConsumes() {
-		return this.consumes;
+		return (this.consumes != null) ? this.consumes : new ArrayList<String>();
 	}
 
 	public void setConsumes(List<String> consumes) {
@@ -59,7 +61,7 @@ public class SwaggerDocumentation {
 	}
 
 	public List<String> getProduces() {
-		return this.produces;
+		return (this.produces != null) ? this.produces : new ArrayList<String>();
 	}
 
 	public void setProduces(List<String> produces) {
@@ -67,7 +69,7 @@ public class SwaggerDocumentation {
 	}
 
 	public Map<String, SwaggerEndpoint> getPaths() {
-		return this.paths;
+		return (this.paths != null) ? this.paths : new HashMap<String, SwaggerEndpoint>();
 	}
 
 	public void setPaths(Map<String, SwaggerEndpoint> paths) {
@@ -75,7 +77,7 @@ public class SwaggerDocumentation {
 	}
 
 	public Map<String, SwaggerObjectDefinition> getDefinitions() {
-		return this.definitions;
+		return (this.definitions != null) ? this.definitions : new HashMap<String, SwaggerObjectDefinition>();
 	}
 
 	public void setDefinitions(Map<String, SwaggerObjectDefinition> definitions) {
